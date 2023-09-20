@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "demo.App",
+            "projectName": "demo"
+        },
+        {
+            "type": "java",
+            "name": "Mascota",
+            "request": "launch",
+            "mainClass": "demo.classes.Mascota",
+            "projectName": "demo"
+        }
+    ]
+}
