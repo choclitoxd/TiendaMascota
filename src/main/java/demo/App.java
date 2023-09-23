@@ -1,7 +1,5 @@
 package demo;
 
-import demo.mascota.Mascota;
-
 /**
  * Hello world!
  *
