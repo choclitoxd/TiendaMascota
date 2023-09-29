@@ -1,5 +1,6 @@
 package demo.usuario;
 
+
 public class Usuario {
     //Atributos
     private String nombre;
@@ -43,11 +44,11 @@ public class Usuario {
         updUser.apellido = apellido;
         updUser.numeroContacto = numeroContacto;
         updUser.direccion = direccion;
-        System.out.println("Modificado ._.");
+        System.out.println("Modificado");
     }
     public void deleteUser(Usuario delUsuario){
         delUsuario = null;
-        System.out.println("Eliminado x");
+        System.out.println("Eliminado");
     }
 
 }

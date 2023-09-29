@@ -63,10 +63,9 @@ public class Mascota {
     public String obtenerDatosMascota(){
         String datos_mascota = "Nombre: "+nombre+", Raza: "+raza+ ", Edad: "+edad+", tipo mascota: "+ tipoMascota.name() + ", disponible: " + disponible;
         return datos_mascota;
-    }
-    
+    }    
 
-    public void ActualizarMascota(Mascota mascotaActualizar, String nombre, String raza, int edad, TipoMascota tipoMascota){
+    public void ActualizarMascota(Mascota mascotaActualizar , String nombre, String raza, int edad, TipoMascota tipoMascota){
         mascotaActualizar.nombre = nombre;
         mascotaActualizar.raza = raza;
         mascotaActualizar.edad = edad;
@@ -74,7 +73,12 @@ public class Mascota {
         System.out.println("Datos actualizados");
     }
 
-    public void EliminarMascota(Mascota mascotaEliminar){
+    public void eliminarMascota(Mascota mascotaEliminar){
         mascotaEliminar = null;
+        System.out.println("Dato eliminado x");
+    }
+
+    public void mostrarHistorial(){
+        
     }
 }

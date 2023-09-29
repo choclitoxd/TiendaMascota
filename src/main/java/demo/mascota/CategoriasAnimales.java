@@ -7,14 +7,14 @@ public class CategoriasAnimales {
     //Atributos
     HashMap<String, ArrayList<Mascota>> mascotasPorCategoria = new HashMap<>();
     //Metodos
-    public static void agregarMascota(HashMap<String, ArrayList<Mascota>> map, String categoria, Mascota mascota) {
-        if (!map.containsKey(categoria)) {
-            map.put(categoria, new ArrayList<Mascota>());
+    public void agregarMascota(String categoria, Mascota mascota) {
+        if (!this.mascotasPorCategoria.containsKey(categoria)) {
+            this.mascotasPorCategoria.put(categoria, new ArrayList<Mascota>());
         }
-        map.get(categoria).add(mascota);
+        this.mascotasPorCategoria.get(categoria).add(mascota);
     }
-    public static void mostrarNombresMascotas(HashMap<String, ArrayList<Mascota>> map, String categoria) {
-        ArrayList<Mascota> mascotas = map.get(categoria);
+    public void mostrarNombresMascotas(String categoria) {
+        ArrayList<Mascota> mascotas = this.mascotasPorCategoria.get(categoria);
         if (mascotas != null) {
             for (Mascota mascota : mascotas) {
                 System.out.println("Nombre de la mascota: " + mascota.getNombre());
