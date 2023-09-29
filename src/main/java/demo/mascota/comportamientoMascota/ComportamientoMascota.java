@@ -6,6 +6,14 @@ public class ComportamientoMascota {
     //Atributos 
     private Mascota mascota;
     
+    public Mascota getMascota() {
+        return mascota;
+    }
+
+    public void setMascota(Mascota mascota) {
+        this.mascota = mascota;
+    }
+
     //Constructo
     public ComportamientoMascota(Mascota mascota) {
         this.mascota = mascota;
