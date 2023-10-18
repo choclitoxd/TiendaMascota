@@ -40,10 +40,10 @@ public class Usuario {
     }
     //Metodo
     public void updateUser(Usuario updUser,String nombre, String apellido, String numeroContacto, String direccion){
-        updUser.nombre = nombre;
-        updUser.apellido = apellido;
-        updUser.numeroContacto = numeroContacto;
-        updUser.direccion = direccion;
+        updUser.setNombre(nombre);
+        updUser.setApellido(apellido);
+        updUser.setNumeroContacto(numeroContacto);
+        updUser.setDireccion(direccion);
         System.out.println("Modificado");
     }
     public void deleteUser(Usuario delUsuario){
@@ -51,4 +51,13 @@ public class Usuario {
         System.out.println("Eliminado");
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", numeroContacto='" + numeroContacto + '\'' +
+                ", direccion='" + direccion + '\'' +
+                '}';
+    }
 }

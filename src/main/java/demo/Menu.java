@@ -1,6 +1,7 @@
 package demo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 import demo.mascota.Mascota;
 import demo.mascota.TipoMascota;
@@ -29,6 +30,50 @@ public class Menu {
         listadoUsuarios.add(usuario3);
         return listadoUsuarios;
     }
+    public static void gestionar(ArrayList<Mascota> mascotas, ArrayList<Usuario> usuarios){
+        String[] opciones = {"Mascota", "Usuario"};
+        String seleccion = (String)JOptionPane.showInputDialog(null,"Selecciona una opción de las que desea editar: ","Lista de Opciones",JOptionPane.PLAIN_MESSAGE,null,opciones,opciones[0]);
+        // Verificar si se seleccionó una opción y mostrarla
+        if (seleccion != null){
+            JOptionPane.showMessageDialog(null,"Seleccionaste: " + seleccion, "Opción Seleccionada",JOptionPane.INFORMATION_MESSAGE);
+            //Aca hacemos casos
+            if (seleccion.equals(opciones[0])){
+                gestionMascota(mascotas);
+            }else {
+                gestionUsuario(usuarios);
+            }
+        }
+    }
+    public  static void gestionMascota(ArrayList<Mascota> mascotas){
+        // Crear una lista de nombres de mascotas
+        ArrayList<String> nombreArray = new ArrayList<>();
+        for (Mascota mascota: mascotas) {
+            nombreArray.add(mascota.getNombre());
+        }
+        String[] nombre = nombreArray.toArray(new String[0]);
+        // Mostrar un cuadro de diálogo para que el usuario seleccione una mascota
+        String seleccion = (String)JOptionPane.showInputDialog(null,"Selecciona una opción de las que desea editar: ","Lista de Opciones",JOptionPane.PLAIN_MESSAGE,null,nombre,nombre[0]);
+        if (seleccion != null){
+            JOptionPane.showMessageDialog(null,"Seleccionaste: " + seleccion, "Opción Seleccionada",JOptionPane.INFORMATION_MESSAGE);
+            //Aca hacemos casos
+            menuMascota(mascotas.get(Arrays.asList(nombre).indexOf(seleccion)));
+        }     
+    }
+    public static void  gestionUsuario(ArrayList<Usuario> usuarios){
+        // Crear una lista de nombres de usuario
+        ArrayList<String> nombreArray = new ArrayList<>();
+        for (Usuario usuario: usuarios) {
+            nombreArray.add(usuario.getNombre());
+        }
+        String[] nombre = nombreArray.toArray(new String[0]);
+        // Mostrar un cuadro de diálogo para que el usuario seleccione una usuario
+        String seleccion = (String)JOptionPane.showInputDialog(null,"Selecciona una opción de las que desea editar: ","Lista de Opciones",JOptionPane.PLAIN_MESSAGE,null,nombre,nombre[0]);
+        if (seleccion != null){
+            JOptionPane.showMessageDialog(null,"Seleccionaste: " + seleccion, "Opción Seleccionada",JOptionPane.INFORMATION_MESSAGE);
+            //Aca hacemos casos
+            menuUsuario(usuarios.get(Arrays.asList(nombre).indexOf(seleccion)));
+        }
+    }
     public static void menuMascota(Mascota masct){
         String[] opciones = {"Obtener datos Mascota","Update Mascota","Eliminar","Historial" };
         String seleccion = (String)JOptionPane.showInputDialog(null,"Selecciona una opción:","Lista de Opciones",JOptionPane.PLAIN_MESSAGE,null,opciones,opciones[0]);
@@ -37,7 +82,7 @@ public class Menu {
             JOptionPane.showMessageDialog(null,"Seleccionaste: " + seleccion, "Opción Seleccionada",JOptionPane.INFORMATION_MESSAGE);
             //Aca hacemos casos 
             if (seleccion.equals(opciones[0])) {
-                System.out.println("\n\nDatos de la Mascota: \n"+masct.obtenerDatosMascota()+"\n");
+                System.out.println("\n\nDatos de la Mascota: \n"+masct.toString()+"\n");
             }else if (seleccion.equals(opciones[1])) {
                 pedirDatosApdateMascota(masct);
             } else if(seleccion.equals(opciones[2])){
@@ -48,14 +93,14 @@ public class Menu {
         }
     }
     public static void  pedirDatosApdateMascota(Mascota masct){
-        String nombre = formularioMascota("Nombre",masct.getNombre());
-        String raza = formularioMascota("Raza", masct.getRaza());
-        int edad = Integer.parseInt(formularioMascota("Edad", String.valueOf(masct.getEdad())));
+        String nombre = formulario("Nombre",masct.getNombre());
+        String raza = formulario("Raza", masct.getRaza());
+        int edad = Integer.parseInt(formulario("Edad", String.valueOf(masct.getEdad())));
         TipoMascota tipoMascota = formularioTipoMascota("Tipo Mascota", masct.getTipoMascota());
-        masct.ActualizarMascota(masct, nombre, raza, edad, tipoMascota);
-        System.out.println("\n\nDatos de la Mascota: \n"+masct.obtenerDatosMascota()+"\n");
+        masct.actualizarMascota(masct, nombre, raza, edad, tipoMascota);
+        System.out.println("\n\nDatos de la Mascota: \n"+masct.toString()+"\n");
     }
-    public static String formularioMascota(String updateD, String defaultData){
+    public static String formulario(String updateD, String defaultData){
         String dato = (String)JOptionPane.showInputDialog(null,"Ingrese algo:",updateD, JOptionPane.PLAIN_MESSAGE, null, null,defaultData);
         if (dato != null) {
             System.out.println("Ingresado: " + dato);
@@ -90,20 +135,28 @@ public class Menu {
         return datoT;
     }
     //Voy aca
-    // public void menuUsuario(Usuario user){
-    //     String[] opciones = {"Obtener datos Mascota","Update Mascota","Eliminar" };
-    //     String seleccion = (String)JOptionPane.showInputDialog(null,"Selecciona una opción:","Lista de Opciones",JOptionPane.PLAIN_MESSAGE,null,opciones,opciones[0]);
-    //     // Verificar si se seleccionó una opción y mostrarla
-    //     if (seleccion != null){
-    //         JOptionPane.showMessageDialog(null,"Seleccionaste: " + seleccion, "Opción Seleccionada",JOptionPane.INFORMATION_MESSAGE);
-    //         //Aca hacemos casos 
-    //         if (seleccion.equals(opciones[0])) {
-    //             System.out.println("\n\nDatos de la Mascota: \n"+masct.obtenerDatosMascota()+"\n");
-    //         }else if (seleccion.equals(opciones[1])) {
-    //             pedirDatosApdateMascota(masct);
-    //         } else if(seleccion.equals(opciones[2])){
-    //             masct.eliminarMascota(masct);
-    //         }
-    //     }
-    // }   
+    public static void menuUsuario(Usuario user){
+        String[] opciones = {"Obtener datos Usuario","Update Usuario","Eliminar" };
+        String seleccion = (String)JOptionPane.showInputDialog(null,"Selecciona una opción:","Lista de Opciones",JOptionPane.PLAIN_MESSAGE,null,opciones,opciones[0]);
+        // Verificar si se seleccionó una opción y mostrarla
+        if (seleccion != null){
+            JOptionPane.showMessageDialog(null,"Seleccionaste: " + seleccion, "Opción Seleccionada",JOptionPane.INFORMATION_MESSAGE);
+            //Aca hacemos casos 
+            if (seleccion.equals(opciones[0])) {
+                System.out.println(user.toString());
+            }else if (seleccion.equals(opciones[1])) {
+                pedirDatosApdateUser(user);
+            }else {
+                user.deleteUser(user);
+            }
+        }
+    }
+    public static void  pedirDatosApdateUser(Usuario user){
+        String nombre = formulario("Nombre",user.getNombre());
+        String apellido = formulario("Apellido", user.getApellido());
+        String numeroContacto = formulario("Numero contacto", user.getNumeroContacto());
+        String direccion = formulario("Direccion", user.getDireccion());
+        user.updateUser(user, nombre, apellido, numeroContacto, direccion);
+        System.out.println("Datos user: " + user.toString())    ;
+    }  
 }
